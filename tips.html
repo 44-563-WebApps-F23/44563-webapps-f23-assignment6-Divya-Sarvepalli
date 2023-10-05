@@ -4,39 +4,73 @@
         <title>Tips Page</title>
     </head>
  
-<body>
+    <body>
+        <h2>Divya Sarvepalli shows tip amounts</h2>
+        <form>
+            <div class="mb-3">
+                <label for="base">Enter Base Amount</label>
+                <input type="number" id="base" name="base" min=10 max=50 step=2 value=50>
+            </div>
+            <div class="mb-3">
+                <label for="tip_percent">Enter the Tip Percent</label>
+                <input type="number" id="tip_percent" name="tip_percent" value=15>
+            </div>
+            <input class="btn btn-success mb-3" type="button" value="Show tip" onclick="tips()">
+        </form>
+        <p id="result">Calculated tip is shown here</p>
 
-<h2>Divya Sarvepalli shows tip amounts</h2>
-
-<form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30><br>
-
-    <br>
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
-
-    <input type="button" onclick="resolveForm()" value="Get values from form">
-</form>
-
-
-<p id="result">This text will be replaced </p>
-
-<script> 
-
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
+        <script> 
+            function tips (){
+                console.log("Getting form values")
+                baseValue = parseFloat(document.getElementById("base").value)
+                tippercent = parseFloat(document.getElementById("tip_percent").value)
     
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
-    }
-}
-</script>
-</body>
-</html> 
+                let toShow=""
+                for(let i=0;i<5;i++)
+                {
+                  const tipPercentage = tippercent + i * 4;
+                  const calculatedTip = (baseValue * tipPercentage) / 100;
+                  toShow += '${tipPercentage}% is ${calculatedTip}';
+                }
+    
+                out = document.getElementById("result")
+                out.innerHTML = "Tips are:"+toShow
+                out.style.color="#ff0000"
+            }
+        </script><hr>
+        <h6 class="display-6">Radio buttons that switches between calculations</h6>
+        <form>
+            <input type="radio" id="sum" name="ArthOP" value="sum" onclick="chooseOp()">
+            <label for="sum">sum</label></br>
+  
+            <input type="radio" id="diff" name="ArthOP" value="difference" onclick="chooseOp()">
+            <label for="diff">diff</label></br>
+  
+            <input type="radio" id="mult" name="ArthOP" value="product" onclick="chooseOp()">
+            <label for="mult">mult</label></br>
+
+    <!--<input type="button" onclick="resolveRadio()" value="Get values from radio group">-->
+        </form><br>
+        <p id="arthimeticop">basic operations result is shown here</p>
+        <script>
+            function chooseOp ()
+            {
+                console.log("Getting form values")
+                baseValue = parseFloat(document.getElementById("base").value)
+                tipValue = parseFloat(document.getElementById("tip_percent").value)
+                answer = document.getElementById("arthimeticop")
+                if(document.getElementById("sum").checked){
+                    answer.innerHTML="sum of "+baseValue+" and"+tipValue+" is "+(baseValue+tipValue)
+                }
+                else if(document.getElementById("diff").checked){
+                    answer.innerHTML="diff of "+baseValue+" and"+tipValue+" is "+(baseValue-tipValue)
+                }
+      
+                else if(document.getElementById("mult").checked){
+                    answer.innerHTML="product of "+baseValue+" and"+tipValue+" is "+(baseValue*tipValue)
+                }
+                answer.style.color="#ff0000"
+            }
+        </script>
+    </body>
+</html>
