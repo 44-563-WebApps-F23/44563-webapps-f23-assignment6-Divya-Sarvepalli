@@ -32,7 +32,7 @@
                 {
                   const tipPercentage = tippercent + i * 4;
                   const calculatedTip = (baseValue * tipPercentage) / 100;
-                  toShow += '${tipPercentage}% is ${calculatedTip}';
+                  toShow += `${tipPercentage}% is ${calculatedTip}`;
                 }
     
                 out = document.getElementById("result")
@@ -44,7 +44,7 @@
         <h5 class="display-6">Radio buttons that switches between calculations</h5>
         <form>
             <input type="radio" id="sum" name="ArthOP" value="sum" onclick="chooseOp()">
-            <label for="sum">Sum</label></br>
+            <label for="sum">sum</label></br>
           
             <input type="radio" id="diff" name="ArthOP" value="difference" onclick="chooseOp()">
             <label for="diff">diff</label></br>
